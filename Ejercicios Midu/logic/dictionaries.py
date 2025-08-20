@@ -177,67 +177,66 @@ Consultar todas las materias de un estudiante.
 Consultar el promedio de cada estudiante.
 Ver qué estudiante tiene el promedio más alto.
 '''
-sistema_estudiantes = {}
-while True:
-    print("\n--- Sistema de Calificaciones ---")
-    print("1. Agregar Estudiante")
-    print("2. Consultar materias")
-    print("3. Consultar promedio")
-    print("4. Promedio mas alto")
-    print("5. Salir")
-    opcion = int(input("Selecciones su opcion: "))
+# sistema_estudiantes = {}
+# while True:
+#     print("\n--- Sistema de Calificaciones ---")
+#     print("1. Agregar Estudiante")
+#     print("2. Consultar materias")
+#     print("3. Consultar promedio")
+#     print("4. Promedio mas alto")
+#     print("5. Salir")
+#     opcion = int(input("Selecciones su opcion: "))
     
-    if opcion == 1:
-        materias_notas = {}
-        estudiante = input("Ingrese nombre del estudiante: ").lower()
-        cantidad_materias = int(input(f"Cuantas materias lleva {estudiante}?: "))
-        for i in range(cantidad_materias):
-            materia = input(f"Ingrese la materia {i + 1}: ").lower()
-            nota = float(input(f"Ingrese la nota de {materia}: "))
-            materias_notas[materia] = nota
-        sistema_estudiantes[estudiante] = materias_notas
+#     if opcion == 1:
+#         materias_notas = {}
+#         estudiante = input("Ingrese nombre del estudiante: ").lower()
+#         cantidad_materias = int(input(f"Cuantas materias lleva {estudiante}?: "))
+#         for i in range(cantidad_materias):
+#             materia = input(f"Ingrese la materia {i + 1}: ").lower()
+#             nota = float(input(f"Ingrese la nota de {materia}: "))
+#             materias_notas[materia] = nota
+#         sistema_estudiantes[estudiante] = materias_notas
         
-    elif opcion == 2:
-        if sistema_estudiantes:
-            estudiante = input("De que estudiante desea ver las materias?: ").lower()
-            if estudiante in sistema_estudiantes:
-                materias = list(sistema_estudiantes[estudiante].keys())
-                print(f"\nMaterias de {estudiante}: ", " | ".join(materias))
-            else:
-                print("\nEl estudiante no fué encontrado")
-        else:
-            print("No hay estudiantes registrados")
+#     elif opcion == 2:
+#         if sistema_estudiantes:
+#             estudiante = input("De que estudiante desea ver las materias?: ").lower()
+#             if estudiante in sistema_estudiantes:
+#                 materias = list(sistema_estudiantes[estudiante].keys())
+#                 print(f"\nMaterias de {estudiante}: ", " | ".join(materias))
+#             else:
+#                 print("\nEl estudiante no fué encontrado")
+#         else:
+#             print("No hay estudiantes registrados")
             
-    elif opcion == 3:
-        if sistema_estudiantes:
-            estudiante = input("De que estudiante desea ver el promedio?: ").lower()
-            if estudiante in sistema_estudiantes:
-                notas = list(sistema_estudiantes[estudiante].values())
-                promedio = sum(notas) / len(notas)
-                print(f"\nPromedio de {estudiante}: {promedio}")
-        else:
-            print("No hay estudiantes regristrados")
+#     elif opcion == 3:
+#         if sistema_estudiantes:
+#             estudiante = input("De que estudiante desea ver el promedio?: ").lower()
+#             if estudiante in sistema_estudiantes:
+#                 notas = list(sistema_estudiantes[estudiante].values())
+#                 promedio = sum(notas) / len(notas)
+#                 print(f"\nPromedio de {estudiante}: {promedio}")
+#         else:
+#             print("No hay estudiantes regristrados")
     
-    #la cagué en no pensar en esto desde el principio
-    elif opcion == 4:
-        if sistema_estudiantes:
-            promedio_mayor = 0
-            for estudiante in sistema_estudiantes:
-                notas = list(sistema_estudiantes[estudiante].values())
-                promedio = sum(notas) / len(notas)
-                if promedio > promedio_mayor:
-                    promedio_mayor = promedio
-                    estudiante_promedio_mayor = estudiante
-            print(f"El promedio mayor lo tiene {estudiante_promedio_mayor} con {round(promedio_mayor, 2)}")
-        else:
-            print("\nNo hay estudiantes regristrados")
-    elif opcion == 5:
-        print("\nSaliendo del programa")
-        break
-    else:
-        print("\nOpcion invalida, intentelo de nuevo")
-
-            
+#     #la cagué en no pensar en esto desde el principio
+#     elif opcion == 4:
+#         if sistema_estudiantes:
+#             promedio_mayor = 0
+#             for estudiante in sistema_estudiantes:
+#                 notas = list(sistema_estudiantes[estudiante].values())
+#                 promedio = sum(notas) / len(notas)
+#                 if promedio > promedio_mayor:
+#                     promedio_mayor = promedio
+#                     estudiante_promedio_mayor = estudiante
+#             print(f"El promedio mayor lo tiene {estudiante_promedio_mayor} con {round(promedio_mayor, 2)}")
+#         else:
+#             print("\nNo hay estudiantes regristrados")
+#     elif opcion == 5:
+#         print("\nSaliendo del programa")
+#         break
+#     else:
+#         print("\nOpcion invalida, intentelo de nuevo")
+         
 '''
 Diccionario anidado (JSON-like):
 Crea un diccionario que represente un usuario en una red social con esta estructura:
@@ -256,3 +255,20 @@ Su primer amigo.
 El texto de su segunda publicación.
 El total de "likes" que tienen todas sus publicaciones.
 '''
+usuario = {
+    "nombre": "Juan",
+    "edad": 20,
+    "amigos": ["Ana", "Luis", "Pedro"],
+    "publicaciones": [
+        {"texto": "Hola mundo", "likes": 10},
+        {"texto": "Aprendiendo Python", "likes": 25}
+    ]
+}
+print(f"Nombre de usuario: {usuario['nombre']}")
+print(f"Primer amigo: {usuario['amigos'][0]}")
+print(f"Texto segunda publicacion: {usuario['publicaciones'][1]['texto']}")
+publicaciones = usuario["publicaciones"]
+total_likes = 0
+for i in range(len(publicaciones)):
+    total_likes += publicaciones[i]["likes"]
+print(f"Total de likes: {total_likes}")
